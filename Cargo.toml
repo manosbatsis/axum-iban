@@ -1,0 +1,47 @@
+# https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "axum-iban"
+version = "0.0.1"
+edition = "2021"
+description = "Axum IBAN REST API"
+authors = ["Manos Batsis <manosbatsis@gmail.com>"]
+license = "AGPL-3"
+readme = "README.md"
+repository = "https://github.com/manosbatsis/axum-iban"
+build = "build.rs"
+
+[build-dependencies]
+shadow-rs = "0.27.1"
+
+[dependencies]
+anyhow = "1.0.80"
+axum = { version = "0.7.4", features = ["macros"] }
+chrono = "0.4.34"
+clap = { version = "4.5.1", features = ["derive"] }
+http-body-util = "0.1.0"
+iban_validate = { version = "4", features = ["std", "serde"] }
+rand = "0.8.5"
+serde = { version = "1.0.197", features = ["derive"] }
+serde_json = "1.0.114"
+shadow-rs = "0.26.1"
+tokio = { version = "1.36.0", features = ["macros", "full"] }
+tower = { version = "0.4.13", features = ["util"] }
+tower-http = { version = "0.5.2", features = ["timeout", "trace"] }
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+utoipa = { version = "4.2.0", features = ["axum_extras"] }
+utoipa-rapidoc = { version = "3.0.0", features = ["axum"] }
+utoipa-redoc = { version = "3.0.0", features = ["axum"] }
+utoipa-swagger-ui = { version = "6.0.0", features = ["axum"] }
+
+[dev-dependencies]
+axum-test = "14.3.0"
+
+[profile.dev]
+incremental = true
+
+[profile.release]
+lto = true
+# https://doc.rust-lang.org/rustc/codegen-options/index.html#codegen-units
+codegen-units = 1

@@ -1,0 +1,67 @@
+name: Rust
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# This allows a subsequently queued workflow run to interrupt previous runs
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v4
+
+      - name: Set up Rust toolchain
+        uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: stable
+          components: rustfmt, clippy
+
+      - name: Set up cargo cache
+        uses: actions/cache@v4
+        continue-on-error: false
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: Build
+        run: cargo build
+
+      - name: Test
+        run: cargo test --no-fail-fast
+
+      - name: Lint
+        # exit non-zero if there are any warnings
+        # https://doc.rust-lang.org/stable/clippy/usage.html
+        run: cargo clippy -- -Dwarnings
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v4
+
+      - name: Set up Rust toolchain
+        uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: stable
+          components: rustfmt, clippy
+
+      - name: Format
+        run: cargo fmt --check --verbose
