@@ -1,5 +1,6 @@
 <h1>axum-iban</h1>
-[![Build Status](https://github.com/manosbatsis/axum-iban/workflows/Build/badge.svg?branch=master)](https://github.com/manosbatsis/axum-iban/actions?query=branch%3Amaster)
+
+[![CI](https://github.com/manosbatsis/axum-iban/actions/workflows/ci.yml/badge.svg)](https://github.com/manosbatsis/axum-iban/actions/workflows/ci.yml)
 
 A simple REST API to validate [IBANs](https://en.wikipedia.org/wiki/International_Bank_Account_Number) and get information about them. Uses
 [axum](https://github.com/tokio-rs/axum) and [iban_validate](https://github.com/ThomasdenH/iban_validate).
