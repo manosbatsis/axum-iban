@@ -6,6 +6,8 @@ A simple REST API to validate [IBANs](https://en.wikipedia.org/wiki/Internationa
 [axum](https://github.com/tokio-rs/axum) and [iban_validate](https://github.com/ThomasdenH/iban_validate).
 Tests use [axum-test](https://github.com/JosephLenton/axum-test).
 
+## Table of Contents
+
 <!-- TOC -->
   * [Build](#build)
     * [Basics](#basics)
