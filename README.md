@@ -7,14 +7,14 @@ A simple REST API to validate [IBANs](https://en.wikipedia.org/wiki/Internationa
 Tests use [axum-test](https://github.com/JosephLenton/axum-test).
 
 <!-- TOC -->
-* [Build](#build)
-  * [Basics](#basics)
-  * [Binary](#binary)
-* [Run](#run)
-  * [Start Server with Cargo](#start-server-with-cargo)
-  * [Start Server with Docker](#start-server-with-docker)
-  * [Test Routes](#test-routes)
-  * [OpenAPI Documentation](#openapi-documentation)
+  * [Build](#build)
+    * [Basics](#basics)
+    * [Binary](#binary)
+  * [Run](#run)
+    * [Start Server with Cargo](#start-server-with-cargo)
+    * [Start Server with Docker](#start-server-with-docker)
+  * [Test](#test)
+    * [OpenAPI Documentation](#openapi-documentation)
 <!-- TOC -->
 
 ## Build
@@ -85,7 +85,7 @@ Build Docker image and run container:
 ./run.sh
 ```
 
-### Test Routes
+## Test
 
 Start the server first and then in another terminal (tab):
 
