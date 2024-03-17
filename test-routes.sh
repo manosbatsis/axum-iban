@@ -38,6 +38,7 @@ while [ $# -gt 0 ]; do
 done
 
 PORT=${PORT:-3000}
+echo "Using port: $PORT"
 
 get() {
     local url="$1"
@@ -80,7 +81,7 @@ print_response() {
     rm response.json
 }
 
-if ! curl -s -o /dev/null -w "%{http_code}" "http://127.0.0.1:$PORT" | grep -q '^2'; then
+if ! curl -s -o /dev/null -w "%{http_code}" "http://127.0.0.1:$PORT/info/version" | grep -q '^2'; then
     print_error_and_exit "Failed to call API, is it running?"
 fi
 

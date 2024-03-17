@@ -22,5 +22,5 @@ RUN apt-get update && \
 COPY --from=builder /usr/local/cargo/bin/axum-iban /usr/local/bin/axum-iban
 CMD ["axum-iban", "--host", "0.0.0.0", "--port", "80"]
 
-HEALTHCHECK --interval=1m --timeout=3s \
+HEALTHCHECK --interval=1m --timeout=3s --retries=3 \
     CMD curl -fs http://localhost/info/healthcheck || exit 1

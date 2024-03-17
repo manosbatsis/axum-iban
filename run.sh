@@ -37,7 +37,7 @@ if [ -z "$(docker ps -q --filter "name=axum-iban")" ]; then
 
     echo "Waiting for container to start..."
     timeout=10
-    while ! curl -fs http://127.0.0.1 > /dev/null; do
+    while ! curl -fs http://127.0.0.1/info/healthcheck > /dev/null; do
         sleep 1
         ((timeout--))
         if [ "$timeout" -le 0 ]; then
