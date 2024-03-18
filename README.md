@@ -22,7 +22,7 @@ Tests use [axum-test](https://github.com/JosephLenton/axum-test).
 ## Build
 
 ### Basics
-Assuming you have Rust instaalled, checkout the repo, bavigate to the project's root folder and run:
+Assuming you have Rust installed, checkout the repo, bavigate to the project's root folder and run:
 
 ```shell
 cargo build
